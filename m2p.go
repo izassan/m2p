@@ -166,7 +166,7 @@ func print_process_pattern(process_pattern, file_path string){
 }
 
 func main(){
-    var inputFile string
+    var inputDir string
     var outputDir string
     var naming string
 
@@ -181,8 +181,8 @@ func main(){
         return
     }
 
-    inputFile, outputDir = flag.Arg(0), flag.Arg(1)
+    inputDir, outputDir = flag.Arg(0), flag.Arg(1)
 
     // dummy output
-    fmt.Println(inputFile, outputDir)
+    fmt.Println(inputDir, outputDir)
 }
