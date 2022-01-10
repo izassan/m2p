@@ -1,4 +1,4 @@
-package m2p
+package main
 
 import (
 	"flag"
@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+    "github.com/izassan/m2p/convert"
 )
 
 
@@ -105,7 +106,7 @@ func convert_mediafiles(src_path, dest_path string){
             print_process_pattern("directory", file.Name())
 
             // main process
-            path_to_pdf = lib.Dir2pdf(path_to_file, path_to_dir_pdf, path_to_old)
+            path_to_pdf = convert.Dir2pdf(path_to_file, path_to_dir_pdf, path_to_old)
 
             // set path_copy_src
             path_copy_src = path_to_pdf
@@ -115,8 +116,8 @@ func convert_mediafiles(src_path, dest_path string){
             // output log
             print_process_pattern("zip", file.Name())
 
-            path_to_directory = lib.Zip2dir(path_to_file, path_to_old)
-            path_to_pdf = lib.Dir2pdf(path_to_directory, path_to_dir_pdf, path_to_old)
+            path_to_directory = convert.Zip2dir(path_to_file, path_to_old)
+            path_to_pdf = convert.Dir2pdf(path_to_directory, path_to_dir_pdf, path_to_old)
 
             // set path_copy_src
             path_copy_src = path_to_pdf
