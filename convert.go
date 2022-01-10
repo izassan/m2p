@@ -1,4 +1,4 @@
-package lib
+package m2p
 
 import (
 	"os"

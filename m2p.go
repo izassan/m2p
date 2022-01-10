@@ -1,4 +1,4 @@
-package main
+package m2p
 
 import(
     "log"
@@ -7,7 +7,6 @@ import(
     "regexp"
     "path/filepath"
     "github.com/urfave/cli/v2"
-    "github.com/izassan/m2p/lib"
 )
 
 
