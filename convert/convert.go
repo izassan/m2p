@@ -1,4 +1,4 @@
-package m2p
+package convert
 
 import (
 	"os"
