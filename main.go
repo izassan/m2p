@@ -1,12 +1,13 @@
 package m2p
 
-import(
-    "log"
-    "os"
-    "io"
-    "regexp"
-    "path/filepath"
-    "github.com/urfave/cli/v2"
+import (
+	"flag"
+	"fmt"
+	"io"
+	"log"
+	"os"
+	"path/filepath"
+	"regexp"
 )
 
 
@@ -164,37 +165,23 @@ func print_process_pattern(process_pattern, file_path string){
 }
 
 func main(){
-    // define cli
-    var dest_path string
-    var src_path string
-    app := &cli.App{
-        Name: "m2p",
-        Usage: "media files convert to pdf. and media files send other directory",
-        Flags: []cli.Flag{
-            &cli.StringFlag{
-                Name:   "dest_path",
-                Aliases: []string{"d"},
-                Value:  "./dest",
-                Usage:   "set destinaion path",
-                Destination: &dest_path,
-            },
-            &cli.StringFlag{
-                Name:   "src_path",
-                Aliases: []string{"s"},
-                Value:  "./src",
-                Usage:   "set source path",
-                Destination: &src_path,
-            },
-        },
-        Action: func(c *cli.Context) error {
-            convert_mediafiles(src_path, dest_path)
-            return nil
-        },
+    var inputFile string
+    var outputDir string
+    var naming string
+
+    flag.StringVar(&naming, "naming", "%s_%d.jpg", "naming")
+    flag.Parse()
+
+    if flag.NArg() < 2{
+        fmt.Println("not enough argument")
+        return
+    }else if flag.NArg() > 2{
+        fmt.Println("too many argument")
+        return
     }
 
-    app.Version = "0.1.0"
-    err := app.Run(os.Args)
-    if err != nil{
-        log.Fatal(err)
-    }
+    inputFile, outputDir = flag.Arg(0), flag.Arg(1)
+
+    // dummy output
+    fmt.Println(inputFile, outputDir)
 }
