@@ -165,6 +165,20 @@ func print_process_pattern(process_pattern, file_path string){
         process_pattern)
 }
 
+func checkFileType(input string) string{
+    imageExts := []string{".jpg", "jpeg", ".png"}
+    if filepath.Ext(input) == ".zip"{
+        return "zip"
+    }
+    for _, imageExt := range imageExts{
+        if filepath.Ext(input) == imageExt{
+            return "media"
+        }
+    }
+    return "other"
+}
+
+
 func main(){
     var inputDir string
     var outputDir string
