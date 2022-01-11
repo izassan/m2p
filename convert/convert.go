@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-func Dir2pdf(dir_path, path_to_dir_pdf, path_to_dir_old string) string{
+func Dir2pdf(dir_path, path_to_dir_pdf string){
 
     // generate path to pdf
     pdf_path := filepath.Join(
@@ -22,16 +22,6 @@ func Dir2pdf(dir_path, path_to_dir_pdf, path_to_dir_old string) string{
     }
 
     generate_pdf(dir_path, pdf_path, files)
-
-    // move to old directory
-    path_to_old := filepath.Join(path_to_dir_old, filepath.Base(dir_path))
-    err = os.Rename(dir_path, path_to_old)
-    if err != nil{
-        panic(err)
-    }
-
-    // return pdf path string
-    return pdf_path
 }
 
 func Zip2dir(zip_path, path_to_dir_old string) string{

@@ -23,13 +23,12 @@ func checkFileType(input string) string{
 
 
 func main(){
-    var inputDir string
+    var inputFile string
     var outputDir string
     var naming string
 
-    flag.StringVar(&naming, "naming", "%s_%d.jpg", "naming")
+    flag.StringVar(&naming, "naming", "%s_%d", "naming")
     flag.Parse()
-
     if flag.NArg() < 2{
         fmt.Println("not enough argument")
         return
@@ -37,9 +36,29 @@ func main(){
         fmt.Println("too many argument")
         return
     }
+    inputFile, outputDir = flag.Arg(0), flag.Arg(1)
 
-    inputDir, outputDir = flag.Arg(0), flag.Arg(1)
+    filetype := checkFileType(inputFile)
+    if filetype == "other"{
+        fmt.Println("unsupport format")
+    }
+    // check exist output  directory
+    if _, err := os.Stat(outputDir); err != nil{
+        // if not exist, create directory
+        err := os.Mkdir(outputDir, 0777)
+        if err != nil{
+            panic(err)
+        }
+    }
+
+    tmpDir := "./tmp"
+    if filetype == "zip"{
+        extDir := convert.Zip2dir(inputFile, tmpDir)
+        convert.Dir2pdf(extDir, tmpDir)
+    }else if filetype == "media"{
+        convert.Dir2pdf(inputFile, tmpDir)
+    }
 
     // dummy output
-    fmt.Println(inputDir, outputDir)
+    fmt.Println(inputFile, outputDir)
 }
