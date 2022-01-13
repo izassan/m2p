@@ -16,7 +16,7 @@ func Dir2pdf(dir_path, path_to_dir_pdf string){
 
     // read files and sort
     files, err := os.ReadDir(dir_path)
-    files = sortdir(files)
+    // files = sortdir(files)
     if err != nil {
         panic(err)
     }
@@ -24,13 +24,13 @@ func Dir2pdf(dir_path, path_to_dir_pdf string){
     generate_pdf(dir_path, pdf_path, files)
 }
 
-func Zip2dir(zip_path, path_to_dir_old string) string{
+func Zip2dir(zip_path, tmp_dir string) string{
     dir_name := strings.Replace(zip_path, ".zip", "", -1)
     unzip(zip_path, dir_name)
-    path_to_old := filepath.Join(path_to_dir_old, filepath.Base(zip_path))
-    err := os.Rename(zip_path, path_to_old)
+    path_to_new := filepath.Join(tmp_dir, filepath.Base(dir_name))
+    err := os.Rename(dir_name, path_to_new)
     if err != nil{
         panic(err)
     }
-    return dir_name
+    return path_to_new
 }
