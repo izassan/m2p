@@ -58,7 +58,4 @@ func main(){
     }else if filetype == "media"{
         convert.Dir2pdf(inputFile, tmpDir)
     }
-
-    // dummy output
-    fmt.Println(inputFile, outputDir)
 }
