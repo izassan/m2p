@@ -52,9 +52,17 @@ func main(){
     }
 
     tmpDir := "./tmp"
+    if _, err := os.Stat(tmpDir); err != nil{
+        // if not exist, create directory
+        err := os.Mkdir(tmpDir, 0777)
+        if err != nil{
+            panic(err)
+        }
+    }
+
     if filetype == "zip"{
         extDir := convert.Zip2dir(inputFile, tmpDir)
-        convert.Dir2pdf(extDir, tmpDir)
+        convert.Dir2pdf(extDir, outputDir)
     }else if filetype == "media"{
         convert.Dir2pdf(inputFile, tmpDir)
     }
