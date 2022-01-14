@@ -1,11 +1,11 @@
 package convert
 
 import (
-	"os"
+    "os"
     "strings"
     _ "image/jpeg"
     _ "image/png"
-	"path/filepath"
+    "path/filepath"
 )
 
 func Dir2pdf(dir_path, path_to_dir_pdf string){
@@ -16,7 +16,7 @@ func Dir2pdf(dir_path, path_to_dir_pdf string){
 
     // read files and sort
     files, err := os.ReadDir(dir_path)
-    // files = sortdir(files)
+    files = sortdir(files)
     if err != nil {
         panic(err)
     }

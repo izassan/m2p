@@ -1,9 +1,9 @@
 package convert
 
 import (
-	"archive/zip"
-	"log"
-	"os"
+    "archive/zip"
+    "log"
+    "os"
     "io"
     "strconv"
     "io/fs"
@@ -11,8 +11,8 @@ import (
     _ "image/jpeg"
     _ "image/png"
     "regexp"
-	"path/filepath"
-	"github.com/signintech/gopdf"
+    "path/filepath"
+    "github.com/signintech/gopdf"
 )
 
 func sortdir(dir []fs.DirEntry) []fs.DirEntry{
@@ -20,7 +20,7 @@ func sortdir(dir []fs.DirEntry) []fs.DirEntry{
     sorted_dir := make([]fs.DirEntry, len(dir))
 
     // define regex
-    re := regexp.MustCompile(`.+_(\d+?)\..+?`)
+    re := regexp.MustCompile(`(\d+?)\.(jpg|png)`)
     // put files
     for _, file := range dir{
         match_result := re.FindAllStringSubmatch(file.Name(), -1)
