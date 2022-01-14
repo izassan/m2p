@@ -27,5 +27,9 @@ test:
 	@go build m2p.go
 	@./m2p testdata/95479584.zip testdata/output
 
+test_name:
+	@go build m2p.go
+	@./m2p testdata/name_test testdata/output
+
 clean:
 	@rm -r bin
