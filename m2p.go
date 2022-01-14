@@ -9,15 +9,8 @@ import (
 )
 
 func checkFileType(input string) string{
-    imageExts := []string{".jpg", "jpeg", ".png"}
-    if filepath.Ext(input) == ".zip"{
-        return "zip"
-    }
-    for _, imageExt := range imageExts{
-        if filepath.Ext(input) == imageExt{
-            return "media"
-        }
-    }
+    if filepath.Ext(input) == ".zip"{ return "zip" }
+    if fInfo, _ := os.Stat(input); fInfo.IsDir() { return "media" }
     return "other"
 }
 
