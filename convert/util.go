@@ -2,6 +2,7 @@ package convert
 
 import (
     "archive/zip"
+    "fmt"
     "log"
     "os"
     "io"
@@ -24,8 +25,16 @@ func sortdir(dir []fs.DirEntry) []fs.DirEntry{
     // put files
     for _, file := range dir{
         match_result := re.FindAllStringSubmatch(file.Name(), -1)
+        if len(match_result) == 0{
+            fmt.Println("not found number in file name")
+            os.Exit(-1)
+        }
         file_number_str := match_result[0][1]
         file_number, _ := strconv.Atoi(file_number_str)
+        if len(sorted_dir) - 1 < file_number{
+            fmt.Println("file number is too large")
+            os.Exit(-1)
+        }
         sorted_dir[file_number] = file
     }
 
