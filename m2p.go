@@ -59,4 +59,7 @@ func main(){
     }else if filetype == "media"{
         convert.Dir2pdf(inputFile, tmpDir)
     }
+
+    // remove tmp directory
+    os.RemoveAll(tmpDir)
 }
