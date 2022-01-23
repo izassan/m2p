@@ -6,7 +6,17 @@ import (
     _ "image/jpeg"
     _ "image/png"
     "path/filepath"
+    "github.com/izassan/m2p/entity"
 )
+
+func GeneratePDF(m2pio entity.M2pIo){
+    if m2pio.InputType == "zip"{
+        extDir := Zip2dir(m2pio.Input, m2pio.TmpDir)
+        Dir2pdf(extDir, m2pio.OutputDir)
+    }else if m2pio.InputType == "media"{
+        Dir2pdf(m2pio.Input, m2pio.TmpDir)
+    }
+}
 
 func Dir2pdf(dir_path, path_to_dir_pdf string){
 
