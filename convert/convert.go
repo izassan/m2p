@@ -14,7 +14,7 @@ func GeneratePDF(m2pio entity.M2pIo){
         extDir := Zip2dir(m2pio.Input, m2pio.TmpDir)
         Dir2pdf(extDir, m2pio.OutputDir)
     }else if m2pio.InputType == "media"{
-        Dir2pdf(m2pio.Input, m2pio.TmpDir)
+        Dir2pdf(m2pio.Input, m2pio.OutputDir)
     }
 }
 
